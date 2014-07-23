@@ -11,7 +11,7 @@ def lines(fp):
 def main():
     #sent_file = open("AFFIN-111.txt")
     read_affin()
-    tweet_file = open(sys.argv[1])
+    tweet_file = open(sys.argv[1] if (len(sys.argv) > 1) else 'one_tweet.txt')
     #print sys.argv[1]
     #print tweet_file
     tweet_data = tweet_file.readlines()
@@ -19,7 +19,7 @@ def main():
     print len(tweets)
     for tweet in tweets[10:16]:
         print tweet["text"].encode('utf-8')
-    print tweets[10].keys()
+    print tweets[0].keys()
     #print tweet_data
     #tweet = json.loads(tweet_data)
     #pprint(tweets[10])
