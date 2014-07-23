@@ -8,6 +8,21 @@ def hw():
 def lines(fp):
     print str(len(fp.readlines()))
 
+# Thoughts about the approach
+# ===========================
+# Load in the word sentiment dictionary
+# Load in the tweets
+# for each tweet
+#     If the tweet line is not a tweet then score is 0
+#     else (it is a tweet!)
+#         // Add up the sentiment of each word in the tweet
+#         for each word
+#             if word is NOT in wsd then score is 0
+#             else get wsd[word] => should return a score
+#             // Is there a pythonian way to do the test and score adding in one line?
+#     print score from tweet
+# // Done - assignment just wants the results printed
+
 def main():
     #sent_file = open("AFFIN-111.txt")
     read_affin()
