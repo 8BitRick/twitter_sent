@@ -25,34 +25,22 @@ def lines(fp):
 
 def main():
     # Get the sentiment file
-    scores = read_affin("AFINN-111.txt")
+    scores = read_affin(sys.argv[1] if (len(sys.argv) > 1) else 'AFINN-111.txt')
 
     # Get our tweets
-    tweet_file = open(sys.argv[1] if (len(sys.argv) > 1) else 'output.txt')
+    tweet_file = open(sys.argv[2] if (len(sys.argv) > 2) else 'output.txt')
     tweets = read_tweet_file(tweet_file)
     # Read each tweet
-    for tweet in tweets[20:40]:
+    for tweet in tweets:#[40:50]:
         score = 0
         # Make sure it is a tweet
         if 'text' in tweet:
             # Get the score for every word
-            print tweet["text"].encode('utf-8')
+            # print tweet["text"].encode('utf-8')
             for word in (tweet["text"].encode('utf-8').split()):
                 # print word
                 score += scores[word] if word in scores else 0
         print score
-
-    #read_affin()
-    #print sys.argv[1]
-    #print tweet_file
-    #print len(tweets)
-    #for tweet in tweets[10:16]:
-    #    print tweet["text"].encode('utf-8')
-    #print tweets[0].keys()
-    #print tweet_data
-    #tweet = json.loads(tweet_data)
-    #pprint(tweets[10])
-    #print tweet_file.read()
 
 def read_tweet_file(tweet_file):
     tweet_data = tweet_file.readlines()
@@ -60,11 +48,8 @@ def read_tweet_file(tweet_file):
 
 def read_tweets(tweet_data):
     tweets = []
-    #print tweet_data
-    #print "num tweets " + str(len(tweet_data.split("\n")))
-    print "num " + str(len(tweet_data))
+    # print "num " + str(len(tweet_data))
     for line in tweet_data:
-        #print line
         tweets.append(json.loads(line))
     return tweets
 
